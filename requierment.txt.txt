@@ -1,3 +1,5 @@
-opencv-python
-pytesseract
-Pillow
+paddlepaddle
+paddleocr
+opencv-python-headless
+matplotlib
+
