@@ -2,6 +2,7 @@ from paddleocr import PaddleOCR, draw_ocr
 from matplotlib import pyplot as plt
 import cv2
 import os
+import json
 
 # Instanciation du modèle
 ocr_model = PaddleOCR(lang='en', use_angle_cls=True, use_gpu=True)
@@ -13,18 +14,28 @@ img_path = os.path.join('.', 'Genova.png')
 if not os.path.exists(img_path):
     raise FileNotFoundError(f"Le fichier {img_path} n'a pas été trouvé.")
 
-# Exécution de la méthode OCR sur le modèle OCR
+# Exécution de la méthode OCR sur l'image
 result = ocr_model.ocr(img_path)
 
-#handling the Tuple and list of lists
+# Traitement du tuple et des listes de listes
 inner_result = result[0]
-inner_result
+
+# Extraction des composants détectés
+output = []
 for res in inner_result:
-    print(res[1][0])
+    data = {
+        'box': res[0],
+        'text': res[1][0],
+        'score': res[1][1]
+    }
+    output.append(data)
 
-# Extracting detected components
-boxes = [res[0] for res in result] # 
-texts = [res[1][0] for res in result]
-scores = [res[1][1] for res in result]
+# Chemin du fichier de sortie JSON
+output_path = os.path.join('.', 'ocr_results.json')
 
-font_path = os.path.join('PaddleOCR', 'doc', 'fonts', 'latin.ttf')
+# Sauvegarde des résultats au format JSON
+with open(output_path, 'w', encoding='utf-8') as json_file:
+    json.dump(output, json_file, ensure_ascii=False, indent=4)
+
+print(f"Les résultats OCR ont été sauvegardés dans {output_path}")
+
