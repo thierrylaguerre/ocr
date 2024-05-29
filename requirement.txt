@@ -2,4 +2,3 @@ paddlepaddle
 paddleocr
 opencv-python-headless
 matplotlib
-json
