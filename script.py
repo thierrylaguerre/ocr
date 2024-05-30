@@ -23,10 +23,10 @@ result = ocr_model.ocr(img_path)
 # Extraction des boîtes, textes et scores détectés
 boxes = [line[0] for line in result[0]]
 texts = [line[1][0] for line in result[0]]
-scores = [line[1][1] for line in result[0]]  # Correction ici pour obtenir les scores en float
+scores = [line[1][1] for line in result[0]]
 
 # Utilisation de la police Arial ou une autre police disponible sur votre système
-font_path = "C:\\Windows\\Fonts\\arial.ttf"  # Changez ce chemin si nécessaire
+font_path = "C:\\Windows\\Fonts\\arial.ttf"  
 
 # Chargement de l'image
 image = Image.open(img_path).convert('RGB')
@@ -65,3 +65,4 @@ with open(output_json_path, 'w', encoding='utf-8') as json_file:
 # Affichage des textes avec leurs scores de confiance
 for text, score in zip(texts, scores):
     print(f"Text: {text}, Confidence Score: {score:.2f}")
+
