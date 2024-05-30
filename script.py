@@ -17,15 +17,14 @@ img_path = os.path.join('.', 'Genova.png')
 if not os.path.exists(img_path):
     raise FileNotFoundError(f"Le fichier {img_path} n'a pas été trouvé.")
 
-# Exécution de la méthode OCR sur le modèle OCR
+# Exécution du modèle OCR
 result = ocr_model.ocr(img_path)
 
-# Extraction des boîtes, textes et scores détectés
+# Extraction des boîtes, textes et scores de confiance
 boxes = [line[0] for line in result[0]]
 texts = [line[1][0] for line in result[0]]
 scores = [line[1][1] for line in result[0]]
 
-# Utilisation de la police Arial ou une autre police disponible sur votre système
 font_path = "C:\\Windows\\Fonts\\arial.ttf"  
 
 # Chargement de l'image
