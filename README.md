@@ -4,9 +4,12 @@ Ce projet utilise le modèle OCR de PaddleOCR pour détecter et reconnaître du 
 
 ## Installation
 
-1. Assurez-vous d'avoir Python installé sur votre système.
-2. Installez les dépendances requises en exécutant la commande suivante :
-      pip install -r requirements.txt
+1. Assurez-vous d'avoir Python 3.11 installé sur votre système 
+
+2. Installez les dépendances requises en exécutant les lignes de commande suivantes :
+      python -m pip install paddlepaddle-gpu==2.6.1 -i https://mirror.baidu.com/pypi/simple
+      python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
+      pip install -r requirements.txt 
 
 ## Utilisation
 
