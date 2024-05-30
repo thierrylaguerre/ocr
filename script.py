@@ -38,9 +38,8 @@ font = ImageFont.truetype(font_path, 16)
 # Préparation des données pour le fichier JSON
 ocr_results = []
 for box, text, score in zip(boxes, texts, scores):
-    # S'assurer que les coordonnées sont sous forme de tuples
     box = [(int(point[0]), int(point[1])) for point in box]
-    print(f"Box Coordinates: {box}")  # Pour déboguer
+    print(f"Box Coordinates: {box}") 
     draw.polygon(box, outline='red')
     text_annotation = f"{text} ({score:.2f})"
     draw.text((box[0][0], box[0][1] - 20), text_annotation, fill='White', font=font)

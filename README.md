@@ -1,26 +1,19 @@
-# OCR avec Tesseract et OpenCV
+# Projet OCR
 
-Ce projet démontre comment effectuer la reconnaissance optique de caractères (OCR) sur des images en utilisant Tesseract et OpenCV en Python. Le script lit une image, la traite pour extraire le texte et met en surbrillance le texte détecté sur l'image.
+Ce projet utilise le modèle OCR de PaddleOCR pour détecter et reconnaître du texte dans une image.
 
-## Prérequis
+## Installation
 
-- Python 3.6 ou supérieur
-- PaddleOCR
-- OpenCV
-- Matplotlib
+1. Assurez-vous d'avoir Python installé sur votre système.
+2. Installez les dépendances requises en exécutant la commande suivante :
+      pip install -r requirements.txt
 
-### Installation
+## Utilisation
 
-1. **Python**: Assurez-vous que Python est installé sur votre système. Vous pouvez le télécharger sur [python.org](https://www.python.org/downloads/).
+1. Placez votre image dans le dossier contenant script.py.
+2. Exécutez le script `script.py` pour détecter et reconnaître le texte dans l'image.
+3. Les résultats seront affichés dans la console et enregistrés dans un fichier JSON.
 
-2. **Installer les dépendances**: Installez les paquets Python requis en utilisant `pip` :
-   ```sh
-   pip install -r requirements.txt
+## Auteur
 
-### Utilisation
-
-1. **Préparez l'image** Assurez vous d'avoir une image dans le meme répertoire que votre script
-
-2. **Exécuter le script** Le script exécutera l'OCR sur l'image et imprimera le texte détecté. De plus, il extraira les boîtes englobantes, le texte détecté et les scores de confiance.
-
-3. **Résultat** Le script affichera le texte détecté dans la console. Si vous souhaitez visualiser les résultats, vous pouvez utiliser OpenCV et Matplotlib pour dessiner les boîtes englobantes et le texte détecté sur l'image.
+Ce projet a été développé par [Thierry LAGUERRE] <thierrylaguerre81@gmail.com>.
