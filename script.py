@@ -2,6 +2,7 @@ from paddleocr import PaddleOCR, draw_ocr
 from matplotlib import pyplot as plt
 import os
 from PIL import Image, ImageDraw, ImageFont
+import json
 
 # Autoriser les doublons de la bibliothèque OpenMP
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
@@ -34,21 +35,34 @@ image = Image.open(img_path).convert('RGB')
 draw = ImageDraw.Draw(image)
 font = ImageFont.truetype(font_path, 16)
 
-# Annotation de l'image avec les boîtes, textes et scores
+# Préparation des données pour le fichier JSON
+ocr_results = []
 for box, text, score in zip(boxes, texts, scores):
     # S'assurer que les coordonnées sont sous forme de tuples
     box = [(int(point[0]), int(point[1])) for point in box]
     print(f"Box Coordinates: {box}")  # Pour déboguer
     draw.polygon(box, outline='red')
     text_annotation = f"{text} ({score:.2f})"
-    draw.text((box[0][0], box[0][1] - 20), text_annotation, fill='white', font=font)
+    draw.text((box[0][0], box[0][1] - 20), text_annotation, fill='White', font=font)
+    
+    # Ajouter les résultats OCR dans la liste
+    ocr_results.append({
+        "box": box,
+        "text": text,
+        "score": score
+    })
 
 # Affichage de l'image annotée
-plt.figure(figsize=(12, 12))
+plt.figure(figsize=(10, 10))
 plt.imshow(image)
 plt.axis('off')
 plt.show()
 
+# Sauvegarde des résultats dans un fichier JSON
+output_json_path = os.path.join('.', 'ocr_results.json')
+with open(output_json_path, 'w', encoding='utf-8') as json_file:
+    json.dump(ocr_results, json_file, ensure_ascii=False, indent=4)
+
 # Affichage des textes avec leurs scores de confiance
 for text, score in zip(texts, scores):
-    print(f"Text: {text}, score de confiance: {score:.2f}")
+    print(f"Text: {text}, Confidence Score: {score:.2f}")
